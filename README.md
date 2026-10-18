@@ -2,6 +2,8 @@
 
 **BugHunt Web**, kullanıcıların herhangi bir kurulum yapmadan doğrudan tarayıcı üzerinden JavaScript hatalarını bulup düzeltebildiği, koyu terminal estetiğine sahip etkileşimli bir hata ayıklama (debugging) oyunudur.
 
+🌐 **Canlı Web Sürümü (GitHub Pages):** [https://erdogan-k.github.io/bughunt-web/](https://erdogan-k.github.io/bughunt-web/)
+
 ---
 
 ## ✨ Özellikler
