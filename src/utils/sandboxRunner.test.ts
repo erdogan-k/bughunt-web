@@ -3,6 +3,18 @@ import { runCodeInSandbox } from './sandboxRunner';
 import { CHALLENGES } from '../data/challenges';
 
 describe('sandboxRunner & MVP challenges', () => {
+  it('contains at least 12 complete JavaScript debugging challenges', () => {
+    expect(CHALLENGES.length).toBeGreaterThanOrEqual(12);
+    for (const c of CHALLENGES) {
+      expect(c.title.length).toBeGreaterThan(3);
+      expect(c.problemDescription.length).toBeGreaterThan(10);
+      expect(c.expectedBehavior.length).toBeGreaterThan(10);
+      expect(c.hint.length).toBeGreaterThan(10);
+      expect(c.explanation.length).toBeGreaterThan(20);
+      expect(c.testCases.length).toBeGreaterThanOrEqual(2);
+    }
+  });
+
   it('validates that each challenge buggyCode fails and solutionCode passes all tests', async () => {
     for (const challenge of CHALLENGES) {
       const buggyOutcome = await runCodeInSandbox(
