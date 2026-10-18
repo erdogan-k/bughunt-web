@@ -1,105 +1,101 @@
 # BugHunt Web 🐛⚡
 
-**BugHunt Web**, kullanıcıların herhangi bir kurulum yapmadan doğrudan tarayıcı üzerinden JavaScript hatalarını bulup düzeltebildiği, koyu terminal estetiğine sahip etkileşimli bir hata ayıklama (debugging) oyunudur.
+[![Deploy to GitHub Pages](https://github.com/erdogan-k/bughunt-web/actions/workflows/deploy.yml/badge.svg)](https://github.com/erdogan-k/bughunt-web/actions/workflows/deploy.yml)
 
-🌐 **Canlı Web Sürümü (GitHub Pages):** [https://erdogan-k.github.io/bughunt-web/](https://erdogan-k.github.io/bughunt-web/)
+**BugHunt Web** is an interactive, browser-based JavaScript debugging game featuring a dark terminal aesthetic. Players can inspect, edit, and fix real-world JavaScript bugs directly in the browser without installing any tools.
 
----
-
-## ✨ Özellikler
-
-- **14 Hazır JavaScript Görevi:** `Diziler & Döngüler`, `Nesne & Referans`, `Asenkron & Promise`, `Kapsam & Closure`, `Tip & Mantık` ve `String & Veri İşleme` konularında **Kolay**, **Orta** ve **Zor** seviyelerde gerçekçi hata senaryoları.
-- **Monaco Editör Entegrasyonu:** VS Code tabanlı sözdizimi renklendirme, satır numaraları, `Ctrl + Enter` ile hızlı test çalıştırma ve çevrimdışı/hızlı metin editörü yedeği.
-- **İzole Web Worker Test Ortamı:**
-  - Kullanıcı kodu ana JavaScript bağlamında (`window` / DOM üzerinde) `eval` veya `Function` ile **çalıştırılmaz**.
-  - Her test çalıştırması için kısa ömürlü bir **Web Worker** oluşturulur.
-  - Worker içerisinde dış ağ ve depolama API'leri (`fetch`, `XMLHttpRequest`, `WebSocket`, `EventSource`, `importScripts`, `indexedDB`, `caches`, `BroadcastChannel`) devre dışı bırakılır.
-  - Sonsuz döngülere (`while(true){}`) karşı **2000ms (2 saniye)** zaman aşımı koruması (`worker.terminate()`) bulunur.
-  - *Güvenlik Notu:* Tarayıcı Web Worker yapısı ana thread, DOM ve `localStorage` izolasyonu sağlar ancak işletim sistemi seviyesinde tam sanal makine izolasyonu değildir. Kodlar hiçbir sunucuya gönderilmez, tamamen istemci tarafında çalışır.
-- **Seviye, XP ve Rozet Sistemi:** Görevleri tamamladıkça XP kazanma, seviye atlama ve 6 farklı başarı rozetinin kilidini açma.
-- **Öğretici Açıklamalar & İpuçları:** Her görevde kademeli ipucu, referans çözüm ve hata kök nedenini anlatan detaylı öğretici açıklama.
-- **Kalıcı İlerleme (`localStorage`):** Çözülen görevler, kazanılan XP, rozetler ve editörde yazılan kod taslakları tarayıcıda saklanır.
-- **Tam Responsive Tasarım:** Masaüstünde yan yana (Editör + Test Sonuçları), mobil ve tablet cihazlarda dikey yerleşim.
+🌐 **Live Demo (GitHub Pages):** [https://erdogan-k.github.io/bughunt-web/](https://erdogan-k.github.io/bughunt-web/)
 
 ---
 
-## 🛠️ Teknoloji Yığını
+## ✨ Key Features
+
+- **14 Curated JavaScript Debugging Challenges:** Covers 6 core categories (*Arrays & Loops*, *Objects & References*, *Async & Promises*, *Scope & Closures*, *Types & Logic*, and *Strings & Data Processing*) across **Easy**, **Medium**, and **Hard** difficulty tiers.
+- **Monaco Editor Integration:** Built-in VS Code editor experience with syntax highlighting, line numbers, `Ctrl + Enter` shortcut to run tests, and an instant plain-text editor fallback.
+- **Isolated Web Worker Sandbox:**
+  - User code is **never** executed on the main JavaScript thread (`window` / DOM context) via `eval` or `Function`.
+  - Every test run spawns a short-lived, isolated **Web Worker**.
+  - Network and storage APIs inside the worker (`fetch`, `XMLHttpRequest`, `WebSocket`, `EventSource`, `importScripts`, `indexedDB`, `caches`, `BroadcastChannel`) are explicitly disabled.
+  - Enforces a strict **2000ms (2-second) execution timeout** (`worker.terminate()`) to protect against infinite loops (`while (true) {}`).
+  - *Security Note:* Browser Web Workers provide thread-level, DOM, and `localStorage` isolation, though they are not a full OS-level virtual machine. No code is ever sent to a backend server—all execution happens client-side.
+- **Gamified Progression (`localStorage`):** Earn XP, level up through debugger ranks, and unlock **6 achievement badges**. All progress and draft code are automatically persisted in `localStorage`.
+- **Hints & Root-Cause Explanations:** Each challenge includes a progressive hint, reference solution, and an educational post-solution root-cause analysis.
+- **Fully Responsive Layout:** Side-by-side code editor and test runner on desktop; stacked layout on mobile and tablet screens.
+
+---
+
+## 🛠️ Tech Stack
 
 - **React 18 + TypeScript + Vite**
 - **Tailwind CSS v4**
 - **Monaco Editor (`@monaco-editor/react`)**
-- **Lucide React** (İkon seti)
-- **Vitest + React Testing Library** (Birim ve bileşen testleri)
+- **Lucide React** (Icons)
+- **Vitest + React Testing Library** (Unit & integration testing)
 
 ---
 
-## 🚀 Yerel Geliştirme Kurulumu
+## 🚀 Getting Started (Local Development)
 
-### Gereksinimler
-- **Node.js** `v18+` (önerilen `v20+` veya `v22+`)
+### Prerequisites
+- **Node.js** `v18+` (`v20+` or `v22+` recommended)
 - **npm** `v9+`
 
-### Adımlar
+### Installation
 
-1. **Depoyu klonlayın ve proje dizinine girin:**
+1. **Clone the repository and navigate into the project folder:**
    ```bash
    git clone https://github.com/erdogan-k/bughunt-web.git
    cd bughunt-web
    ```
 
-2. **Bağımlılıkları yükleyin:**
+2. **Install dependencies:**
    ```bash
    npm install
    ```
 
-3. **Geliştirme sunucusunu başlatın:**
+3. **Start the development server:**
    ```bash
    npm run dev
    ```
-   Tarayıcınızda `http://localhost:5173` adresini açarak uygulamayı görüntüleyebilirsiniz.
+   Open `http://localhost:5173` in your browser.
 
 ---
 
-## 🧪 Test ve Doğrulama Komutları
-
-Birim testlerini, tüm 14 görevin hatalı/çözümlü kod doğrulamalarını ve Worker güvenlik testlerini çalıştırmak için:
+## 🧪 Running Tests & Building
 
 ```bash
-# Tüm testleri tek seferlik çalıştır
+# Run all unit & sandbox challenge validation tests
 npm test
 
-# İzleme (watch) modunda testleri çalıştır
+# Run tests in interactive watch mode
 npm run test:watch
 
-# TypeScript tip kontrolü
+# Run TypeScript type checking
 npm run lint
 
-# Production (üretim) derlemesi oluştur
+# Build for production (outputs to ./dist)
 npm run build
 
-# Üretim derlemesini yerel olarak önizle
+# Preview the production build locally
 npm run preview
 ```
 
 ---
 
-## 🌐 Yayınlama (Deployment) Talimatları
+## 🌐 Deployment Guide
 
-BugHunt Web tamamen statik, istemci taraflı (SPA) bir web uygulamasıdır; herhangi bir backend veya veritabanı gerektirmez. `npm run build` komutu sonucunda oluşan `dist/` klasörü doğrudan yayınlanabilir.
+BugHunt Web is a 100% static client-side Single Page Application (SPA) with zero backend dependencies.
 
-### 1. Vercel ile Yayınlama
-1. GitHub deponuzu [Vercel](https://vercel.com/) hesabınıza bağlayın.
+### 1. GitHub Pages (Automated via GitHub Actions)
+This repository includes a pre-configured GitHub Actions workflow ([`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)). Every push to the `main` branch automatically runs the test suite, builds the production bundle, and deploys `./dist` to GitHub Pages.
+
+### 2. Vercel
+1. Import the GitHub repository into [Vercel](https://vercel.com/).
 2. **Framework Preset:** `Vite`
 3. **Build Command:** `npm run build`
 4. **Output Directory:** `dist`
-5. **Deploy** butonuna tıklayın.
 
-### 2. Netlify ile Yayınlama
-1. [Netlify](https://www.netlify.com/) üzerinde **Add new site > Import an existing project** seçeneğini seçin.
-2. **Build command:** `npm run build`
-3. **Publish directory:** `dist`
-4. Siteyi yayınlayın.
-
-### 3. GitHub Pages ile Yayınlama
-1. `vite.config.ts` içerisine depo adınıza göre `base: '/bughunt-web/'` ekleyin (kök alan adı kullanmıyorsanız).
-2. `npm run build` çalıştırın ve `dist/` klasörünü `gh-pages` dalına veya GitHub Actions static pages iş akışına yönlendirin.
+### 3. Netlify
+1. Select **Add new site > Import an existing project** in [Netlify](https://www.netlify.com/).
+2. **Build Command:** `npm run build`
+3. **Publish Directory:** `dist`
